@@ -1,0 +1,48 @@
+﻿@model ScaffoldTestApp.Models.Foo
+
+@{
+    ViewData["Title"] = "Foo";
+}
+
+<h2>Foo</h2>
+
+<h4>Foo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Foo">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group" id="item-list">
+                <label asp-for="Bars" class="control-label"></label>
+                <input type="button" class="btn btn-default" id="add" value="Add New" />
+                <br /><br />
+                <input type="text" asp-for="Bars" class="items form-control" name="Bars[0].Name" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $("#add").click(function (e) {
+                e.preventDefault();
+                var i = $(".items").length;
+                var n = '<br /><input type="text" class="items form-control" name="Bars[' + i + '].Name" />';
+
+                $("#item-list").append(n);
+            });
+
+        });
+    </script>
+}

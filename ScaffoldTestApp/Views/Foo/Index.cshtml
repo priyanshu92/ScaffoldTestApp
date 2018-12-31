@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ScaffoldTestApp.Models.Foo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bars)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.Bars != null && item.Bars.Any())
+                    {
+                        <ul>
+                            @foreach (var bar in item.Bars)
+                            {
+                                <li>@bar.Name</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        @: "N/A";
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
